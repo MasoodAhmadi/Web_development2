@@ -1,10 +1,10 @@
 <script setup>
-import { ref } from "vue";
-import Input from "../generic/form/Input.vue";
-import Button from "../generic/form/Button.vue";
+import { ref } from 'vue';
+import Input from '../generic/form/Input.vue';
+import Button from '../generic/form/Button.vue';
 
 // Store the text input value. This is a reactive 'state' variable.
-const text = ref("");
+const text = ref('');
 
 /**
  * Handle changes to the text input value
@@ -15,12 +15,14 @@ const onChange = (newValue) => {
 };
 
 // Components emit events. Parent components listen to these events. Just like the DOM!
-const emit = defineEmits(["send"]);
+const emit = defineEmits(['send']);
 
 /**
  * Sends a text message.
  */
 function send() {
+  emit('send', text.value, 'text');
+  text.value = '';
   // Hint: Call 'emit' with the correct arguments.
   //       Finally, clear the text input.
 }
@@ -35,7 +37,7 @@ function send() {
       <Input :value="text" placeholder="Type a message" @change="onChange" />
 
       <!-- Hint: Call the 'send()' function when the button emits a 'click' event. -->
-      <Button icon="send" />
+      <Button icon="send" @click="send" />
     </div>
   </div>
 </template>
