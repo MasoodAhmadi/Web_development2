@@ -1,7 +1,7 @@
 <script setup>
-import useIcons from "../../../compositionFunctions/useIcons";
+import useIcons from '../../../compositionFunctions/useIcons';
 
-const emit = defineEmits(["click"]);
+const emit = defineEmits(['click']);
 const props = defineProps({
   icon: {
     type: String,
@@ -9,7 +9,7 @@ const props = defineProps({
   },
   alt: {
     type: String,
-    default: "",
+    default: '',
   },
 });
 
@@ -21,7 +21,7 @@ const icons = useIcons();
  * @param {Event} event
  */
 function onClick(event) {
-  emit("click", event);
+  emit('click', event);
 }
 </script>
 

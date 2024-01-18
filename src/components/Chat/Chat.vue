@@ -1,14 +1,11 @@
 <script setup>
 // Main chat component
-import { provide, ref } from "vue";
-import CenterOnPage from "../generic/containers/CenterOnPage.vue";
-import ChatMessage from "./ChatMessage/ChatMessage.vue";
-import Compose from "./Compose.vue";
-import useAutoScrollToBottom from "../../compositionFunctions/useAutoScrollToBottom";
-import existingMessages from "./messages";
-
-// The active user's id.
-const USER_ID = 1111;
+import { provide, ref } from 'vue';
+import CenterOnPage from '../generic/containers/CenterOnPage.vue';
+import ChatMessage from './ChatMessage/ChatMessage.vue';
+import Compose from './Compose.vue';
+import useAutoScrollToBottom from '../../compositionFunctions/useAutoScrollToBottom';
+import existingMessages from './messages';
 
 // Create a reactive variable from existing messages. Similar to useState.
 const messages = ref(existingMessages);
@@ -17,10 +14,10 @@ const messages = ref(existingMessages);
  * Adds a message to the chat
  * @param {String} content Message content
  */
-function addMessage(content) {
+function addMessage(content, type) {
   const message = {
     content,
-    type: "text", // Hint: you may want to parameterize this
+    type, // Hint: you may want to parameterize this
     senderId: USER_ID,
     timestamp: new Date(),
   };
@@ -31,8 +28,10 @@ function addMessage(content) {
 const messageListElement = ref(null); // Create a ref that we attach to a DOM element. Similar to useRef.
 useAutoScrollToBottom(messageListElement); // Using a "hook".
 
+// The active user's id.
+const USER_ID = 1111;
 // Provide the active user's id to all components in this tree. Similar to providing a React Context.
-provide("userId", USER_ID);
+provide('userId', USER_ID);
 </script>
 
 <template>

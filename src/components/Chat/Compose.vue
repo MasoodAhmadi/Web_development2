@@ -1,10 +1,11 @@
 <script setup>
-import { ref } from "vue";
-import Input from "../generic/form/Input.vue";
-import Button from "../generic/form/Button.vue";
+import { ref } from 'vue';
+import Input from '../generic/form/Input.vue';
+import Button from '../generic/form/Button.vue';
+import EmojiSelector from './EmojiSelector/EmojiSelector.vue';
 
 // Store the text input value
-const text = ref("");
+const text = ref('');
 
 /**
  * Handle changes to the text input value
@@ -15,20 +16,27 @@ const onChange = (newValue) => {
 };
 
 // Components emit events. Parent components listen to these events. Just like the DOM!
-const emit = defineEmits(["send"]);
+const emit = defineEmits(['send']);
 
 /**
  * Sends a text message.
  */
 function send() {
-  emit("send", text.value); // Hint: You can provide more parameters to 'emit'.
-  text.value = "";
+  emit('send', text.value, 'text');
+  text.value = '';
+}
+
+/**
+ * Sends an emoji message.
+ */
+function sendEmoji(name) {
+  emit('send', name, 'emoji');
 }
 </script>
 
 <template>
   <div class="compose">
-    <!-- An emoji selector could go here, for example. The choice is yours! -->
+    <EmojiSelector @send="sendEmoji" />
 
     <div class="message-row">
       <Input
